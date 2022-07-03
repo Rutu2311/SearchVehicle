@@ -1,0 +1,41 @@
+<section>
+  <div class="w-35 main-30">
+
+  </div>
+  <div class="w-65 main-70">
+
+  </div>
+  <div class="main">
+    <div class="w-31 left-portion">
+      <img class="img-fluid" src="../../../assets/Images/logo.png" alt="Find My Vehicle Logo"/>
+      <p>Digital Towing Vehicle System</p>
+    </div>
+    <div class="w-69 right-portion ">
+      <div class="login-form">
+        <h3 class="text-center">Welcome to <span class="site-name"> Find My Vehicle</span></h3>
+        <form [formGroup]="loginForm" #ngForm="ngForm" (submit)="ngForm.valid && login()">
+          <div class="form-container">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" formControlName="email" id="email" placeholder="name@example.com">
+              <label for="email">Email address</label>
+              <div *ngIf="!loginForm.get('email')?.valid && (loginForm.get('email')?.touched || ngForm.submitted)">
+                <span class="text-danger">*Valid Email ID is required</span>
+              </div>
+            </div>
+            <div class="form-floating mb-5">
+              <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+              <label for="password">Password</label>
+              <div *ngIf="!loginForm.get('password')?.valid && (loginForm.get('password')?.touched || ngForm.submitted)">
+                <span class="text-danger">*Password is required</span>
+              </div>
+              <a href="#" class="mt-1">Forgot Password?</a>
+            </div>
+            <div class="form-floating">
+              <button type="submit" class="btn">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

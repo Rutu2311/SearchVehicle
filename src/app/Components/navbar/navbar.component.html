@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+<!--          <img class="img-fluid" src="../../../assets/Images/logo.png" alt="Find my vehicle logo"/>-->
+    <a class="logo" routerLink="/dashboard">Find My Vehicle</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
+        <li class="nav-item" >
+          <a class="nav-link" [routerLinkActive]="['active']" aria-current="page" routerLink="/overview">OverView</a>
+        </li>
+        <li class="nav-item">
+<!--          <a class="nav-link" href="#">Link</a>-->
+        </li>
+
+      </ul>
+      <div class="d-flex" role="search">
+        <h4>{{userName}}</h4>
+<!--        <button class="btn btn-outline-success" (click)="logout()" type="button">-->
+        <span class="material-symbols-outlined add_user" type="button" (click)="openModal(template)" >group_add</span>
+        <span (click)="logout()" title="Logout" class="material-symbols-outlined">logout</span>
+<!--        </button>-->
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!--Template for user creation-->
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New User</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addUserForm" #ngForm="ngForm" (submit)="ngForm.valid && addUser()">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Mr.XYZ">
+        <label for="name">Name</label>
+        <span class="text-danger" *ngIf="!addUserForm.get('name')?.valid && (addUserForm.get('name')?.touched || ngForm.submitted)">*Name is required</span>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" formControlName="email" id="email" placeholder="name@example.com">
+        <label for="email">Email address</label>
+        <span class="text-danger" *ngIf="!addUserForm.get('email')?.valid && (addUserForm.get('email')?.touched || ngForm.submitted)">*Email is required</span>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+        <label for="password">Password</label>
+        <span class="text-danger" *ngIf="!addUserForm.get('password')?.valid && (addUserForm.get('password')?.touched || ngForm.submitted)">*Password is required</span>
+      </div>
+      <div class="mb-3">
+        <select class="form-select" formControlName="role" aria-label="Default select example">
+          <option value="ADMIN">ADMIN</option>
+          <option value="USER" selected>USER</option>
+        </select>
+      </div>
+      <div class="form-floating actionBtn">
+        <button class="btn btn-primary me-2">Add User</button>
+        <button class="btn btn-warning" type="button" (click)="modalRef?.hide()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

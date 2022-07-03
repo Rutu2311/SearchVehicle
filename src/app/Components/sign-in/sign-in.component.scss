@@ -1,0 +1,101 @@
+
+section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  .main-30{
+    height: 100%;
+    background-color: RGB(26, 235, 182);
+  }
+  .main-70{
+    height: 100%;
+  }
+  .main{
+    //border: 2px solid red;
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .left-portion{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 4em;
+      p {
+        margin-top: 1em;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+      .img-fluid{
+        animation: spin 2s infinite alternate;
+        margin-top: -3em;
+      }
+    }
+    .right-portion {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .login-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 80%;
+        width: 50%;
+        .form-floating{
+          a{
+            text-decoration: none;
+            float: right;
+          }
+          .text-danger{
+            font-size: 0.8em;
+          }
+        }
+        input {
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          border-radius: 0 !important;
+        }
+        input:focus{
+          box-shadow: none !important;
+        }
+        .site-name{
+          color: RGB(26, 235, 182);
+        }
+        .form-container{
+          height: 60%;
+        }
+        .btn{
+          width: 100%;
+          margin-top: 1em;
+          background-color: RGB(26, 235, 182) !important;
+        }
+        .btn:hover{
+          border: 2px solid RGB(26, 235, 182);
+          background-color: #FFFFFF !important;
+          color: RGB(26, 235,182);
+          font-weight: bolder;
+        }
+        .btn:focus{
+          box-shadow: none !important;
+        }
+      }
+    }
+  }
+}
+@keyframes spin {
+  0% {
+    transform: translateY(0em);
+  }
+  100% {
+    transform: translateY(2em);
+  }
+}

@@ -1,0 +1,79 @@
+<app-navbar [userName]="userDetails?.name"></app-navbar>
+<section>
+  <div class="container">
+    <div class="filters mt-4">
+      <div class="row">
+        <div class="col-md-1">
+          <select class="form-select" aria-label="Default select example" (change)="filteredEntries()" [(ngModel)]="filterObj.noOfRecords">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+        <div class="mb-3 col-md-3">
+          <input type="text" class="form-control" id="number" placeholder="Vehicle Number" (change)="filteredEntries()" [(ngModel)]="filterObj.vehicleNumber">
+        </div>
+        <div class="mb-3 col-md-4">
+          <select class="form-select" aria-label="Default select example" (change)="filteredEntries()"[(ngModel)]="filterObj.selectedRegions">
+            <option selected value="">Select Regions</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <input type="date" class="form-control" id="date" placeholder="Select Date" (change)="filteredEntries()" [(ngModel)]="filterObj.date">
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary">Clear Filter</button>
+        </div>
+      </div>
+    </div>
+    <ngx-ui-loader [loaderId]="'loader-01'">Loading</ngx-ui-loader>
+    <div>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="text-center">
+            <th width="10%">Number</th>
+            <th width="10%">Date & Time</th>
+            <th width="40%">From (Approx Location)</th>
+            <th width="20%">To (Godown Location)</th>
+            <th width="20%">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let entry of entries, let i = index">
+            <td>{{entry.num}}</td>
+            <td>{{entry.date}}</td>
+            <td>{{entry.from}}</td>
+            <td>{{entry.location}}</td>
+            <td class="text-center">
+              <button class="btn btn-warning btn-sm" (click)="showImages(imageSection, entry)">View Image</button>
+              <button class="btn btn-danger btn-sm ms-2" (click)="deleteEntry(entry?.id, i)" *ngIf="userDetails?.role === 'ADMIN' && entry.id">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<ng-template #imageSection>
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{vNumber}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center">
+      <div>
+        <img [src]="imgUrl1" width="50%" (load)="imageLoaded()"/>
+      </div>
+      <div class="mt-4" *ngIf="!!imgUrl2">
+        <img [src]="imgUrl2" width="50%"/>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-template>

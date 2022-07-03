@@ -1,0 +1,40 @@
+<app-navbar [userName]="userDetails.name"></app-navbar>
+<section>
+  <div class="container mt-4">
+    <div class="filter-section">
+      <div>
+        <h5>{{ filterObj.region }}</h5>
+      </div>
+      <div class="filter">
+        <div class="form-group">
+          <select class="form-select" [(ngModel)]="filterObj.year" (change)="getYearlyEntries(filterObj.year)">
+            <option *ngFor="let year of YEARS">{{year}}</option>
+          </select>
+        </div>
+        <div class="form-group ms-2">
+          <select class="form-select" [(ngModel)]="filterObj.region" (change)="getYearlyEntries(filterObj.year)">
+            <option *ngFor="let region of REGIONS">{{region}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="mt-2">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>Month</th>
+          <th>Records</th>
+          <th>Other</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of monthlyEntries, let i = index">
+          <td>{{MONTHS[i]}}</td>
+          <td>{{data}}</td>
+          <td>Other</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

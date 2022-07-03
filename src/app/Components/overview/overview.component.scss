@@ -1,0 +1,14 @@
+.container {
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    .form-group {
+      select {
+        cursor: pointer;
+      }
+    }
+    .filter {
+      display: flex;
+    }
+  }
+}
